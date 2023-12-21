@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../Python Matplotlib"
+		},
+		{
+			"path": "../../Learnings and all/Python Pandas Tutorial 1"
+		},
+		{
+			"path": "../Python File Handling"
+		},
+		{
+			"path": "../Python Datetime"
+		},
+		{
+			"path": "../Python User Input"
+		},
+		{
+			"path": "../Python TRY...EXCEPT"
+		},
+		{
+			"path": "../Python String Formatting"
+		},
+		{
+			"path": "../Python RegEx"
+		},
+		{
+			"path": "../Python Modules"
+		},
+		{
+			"path": "../Python Math"
+		},
+		{
+			"path": "../Python JSON"
+		}
+	]
+}
