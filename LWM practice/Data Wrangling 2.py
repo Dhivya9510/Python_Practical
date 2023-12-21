@@ -19,12 +19,12 @@ print(gm)
 hop = dfm.drop(dfm.columns[1], axis=1).head(2)
 print(hop)
 
-     # To delete multiple columns with it's index number - follow the below: 
+     # To delete multiple columns with it's index number -> follow the below: 
 
 run = dfm.drop(columns=["Col1", "Col2", "Col3"], axis= 1).head()
 print(run)
 
-
+# sample comment
 # DELETING ROWS:
  
     # Delete rows, show first two rows of output. 
@@ -32,4 +32,4 @@ print(run)
 nun = dfm[dfm["sex"] != "Male"].head()
 print(nun)
 
-    # 
+#last msg
