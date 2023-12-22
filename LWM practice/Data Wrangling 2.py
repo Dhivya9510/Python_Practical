@@ -29,7 +29,25 @@ print(run)
  
     # Delete rows, show first two rows of output. 
 
-nun = dfm[dfm["sex"] != "Male"].head()
-print(nun)
+candy = dfm[dfm["Sex"] != "Male"].head(2)   # Note that We can process the question with code without drop() function to use 'axis'. 
+print(candy)
 
-#last msg
+
+nun = dfm.drop(["Sex"], axis=0).head()
+print(nun)       # While technically you can use the drop method like above. df.drop([0,1], axis =0) to drop the first two rows).
+                 # - a more practical method is simply to wrap a boolean condition inside df[]. 
+                 # The reason is because we can use the power of conditionals to delete either a single row or (far more likely) many rows at once. 
+                 # Example below to process question by deleting a particular row and giving multiple rows as output. 
+     
+     # Delete rows, show first two rows of output.
+
+sure = dfm[dfm["Name"] != "Allison Watson"].head(2)
+print(sure)       
+
+     # Delete rows, show first two rows of output by index number
+
+gun = dfm.drop(dfm.index[2:], axis = 0, inplace = False)
+print(gun)       # In video, I did not understood tha given code & no explantion for that as well. 
+                 # so note that I searched the here written code in CHATGPT. 
+
+# DROPPING DUPLICATE ROWS: 
