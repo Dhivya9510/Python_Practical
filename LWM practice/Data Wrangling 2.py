@@ -102,22 +102,98 @@ for name in dfm["Name"][0:2]:
 state = name.upper() for name in dfm["Name"][0:2]   # type: ignore
 print(state)
 
+
 # APPLYING A FUNCTION OVER ALL ELEMENTS IN A COLUMN: 
 
-     # Create function: 
+     # To Create function for uppercase: 
 
-
+def uppercase(x):
+    return x.upper()    # type: ignore
 
      # Apply function, show two rows: 
 
+gain = dfm["Name"].apply(uppercase)[0:2]
+print(gain)
 
    
-# APPLYING A FUNCTION TO GROUPS:
+# APPLYING A FUNCTION TO GROUPS: (We can also use the above given method, hence the below methods are the possiblities to write the code to obtain the required)
 
     # Group rows, apply function to groups: 
 
+fit = dfm.groupby("sex").apply(lambda x: x.count())     # If we creating one+ more rows by using lambda function, the count() function automatically adds the counts catagorywise under the column that mentioned in 'groupby' function. 
+print(fit)                                              # Understood the concept. 
 
 
-# CONCATENATING DATAFRAMES: 
+# CONCATENATING DATAFRAMES: (Joining dataframes. For that first we need to create two dataframe to concatenate)
 
-    # 
+    # Create first dataframe
+
+data_a = ({"id" : ['1','2','3']},
+          {"First": ["Allen","Benly", "Charles"]},
+          {"Last":["Dongles", "Edward", "David"]})
+ 
+dataframe_1 = pd.DataFrame(data_a, columns = ["id","First","Last"])
+
+   # Create another dataframe
+
+data_b = ({"id" : ['4','5','6']},
+          {"First": ["Franklin","George", "Martin"]},
+          {"Last":["Nutshell", "lenin", "Frank"]})
+
+dataframe_2 = pd.DataFrame(data_b, columns = ["id","First","Last"])
+
+   # Concatenate dataframes by rows: 
+
+Final = pd.concat([dataframe_1, dataframe_2], axis= 0)
+print(Final)
+
+   # Concatenate dataframes by columns: 
+
+Finale = pd.concat([dataframe_1, dataframe_2], axis= 1)
+print(Finale)
+
+   # Alternatively we can use 'append' to add a new row to a dataframe: 
+         # Create row: 
+
+row = pd.Series([10,"Nun","Catie","Bagath"], index = ["id","First","Last"])
+
+        # Append row: 
+
+appended_row = dataframe_1.append(row, ignore_index=True) # type: ignore
+print(appended_row)
+
+# MERGING DATAFRAMES: 
+       # Creating first dataframe: 
+
+Employee_data = ({"id": ["1","2","3","4"]},
+           {"Name"}:["Allen","Bonie","Charlie","Dawson"])
+
+dataframe_emp = pd.DataFrame("Employee_data", columns = ["id", "Name"])
+
+      # Creating another dataframe: 
+
+Sales_data = ({"id": ["1","2","3","4"]},
+           {"total_sales":[1234,2345,3456,3214]})
+
+dataframe_sal = pd.DataFrame("Sales_data", columns = ["id", "total_sales"])
+
+      # Merge Dataframes: 
+          # Note the below 'on' parameter showing the results with only the same id number in both the dataframes.
+          # Here it shows only 3 & 4 (bcz this two is common in both the dataframes.)
+
+jack = pd.merge(dataframe_emp, dataframe_sal, on= "id")
+print(jack)         # Merge defaults to inner joints. If we want to do an outer join, we can specify that with the 'how' parameter. 
+
+Queen  = pd.merge(dataframe_emp, dataframe_sal, on= "id", how= "outer")
+print(Queen)        # Here you can see the output that actually merges with all the items in both the dataframes. 
+
+           # The same parameter can be used to specify left and right joins. 
+
+king  = pd.merge(dataframe_emp, dataframe_sal, on= "id", how= "left")
+print(king)
+
+Prince  = pd.merge(dataframe_emp, dataframe_sal, on= "id", how= "right")
+print(Prince)
+
+            # Here in 'left' - you can see it ignores all the 'NaN' in left side and showing only the rows with values filled.
+            # Similary Here in 'right' - you can see it ignores all the 'NaN' in the right side and showing only the rows with values filled.
