@@ -12,7 +12,7 @@
 import numpy as np
 import pandas as pd
 
-from sklearn import preprocessing
+from sklearn import preprocessing   # Because Rescaling is a common preprocessing task in ML. 
 
      # Create Feature: (on your own data)
 
@@ -43,11 +43,12 @@ print(standardized_scalar)
   
 
 # Print mean & SD. 
+
 print("Mean:", round(standardized_scalar.mean()))
 print("Standard_Deviation:", standardized_scalar.std())
 
        # If our data has significant outliars, it can negatively impact our standardization by affecting the feature’s mean & variance. 
-       # In this scenario, it is often helpful to instead rescale the feature using the median & quartile range. 
+       # In this scenario, it is often helpful - instead rescale the feature using the median & quartile range. 
        # In Scikit learn, we do this using the Robust scalar method. 
 
    # Create Scalar
@@ -76,11 +77,21 @@ normalizer = Normalizer(norm= "l2")
 
       # Transform feature matrix: 
 
-features = normalizer.transform(Feature_matrix)
-print(features)
+features_matrix= normalizer.transform(Feature_matrix)  # Note here no 'fit_transform', only 'transform'.
+print(features_matrix)
 
+     # Transforming feature matrix in Euclidean norm (i.e: L2)
 
+Feature_l2_norm = Normalizer(norm="l2").transform(Feature)
+print(Feature_l2_norm)
 
+     # Alternatively we can specify MANHATTAN norm (i.e: L1)
+
+Feature_l1_norm = Normalizer(norm="l1").transform(Feature)
+print(Feature_l1_norm)
+ 
+     # Check by showing the adding value output is 1 as unit no
+print("Sum of first observation/s value:", Feature_l1_norm[0,0] + Feature_l1_norm[0,1]) # type:ignore
 
 
 
