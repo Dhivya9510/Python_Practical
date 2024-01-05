@@ -51,6 +51,7 @@ print("Standard_Deviation:", standardized_scalar.std())
        # In this scenario, it is often helpful - instead rescale the feature using the median & quartile range. 
        # In Scikit learn, we do this using the Robust scalar method. 
 
+   # Create Feature (already created last above one)
    # Create Scalar
 
 robust_scalar = preprocessing.RobustScaler()

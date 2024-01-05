@@ -98,8 +98,9 @@ predict_detector = outliar_detector.predict(features)  #type: ignore
             
 # Inter Quartile Range: 
 
-           # Create Feature. (already created above using 'make_blobs)
+           # Create Feature. (already created above using 'make_blobs')
            # Create a function to return index of outliers.
+           # ‘Percentile’ is generally used in ‘Inter-Quartile range’ 
      
 
 def indices_of_outliers(y):
