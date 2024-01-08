@@ -107,13 +107,28 @@ print(hat)
 # 1.9 DELETING OBSERVATIONS WITH MISSING VALUES: 
 
       # You need to delete observations containing missing values: 
+   
+      # Create feature matrix: 
 
+feature = np.array([[1.1,11.1],[2.2,22.2],[3.3,33.3],[4.4,44.4],[np.nan,55]])
 
+      # Keep only observations that are not (denoted by ~) missing
 
+feature[~np.isnan(feature).any(axis=1)]
 
+            # Alternatively we can drop missing observations using pandas
 
+      # Load library: 
+import pandas as pd
 
+      # Create Dataframe:
 
+dlf = pd.DataFrame(feature, columns=["feature_1", "feature_2"])
+
+      # Remove observations with missing values:
+
+kid = dlf.dropna()
+print(kid)
 
 
 # Own notes: 
@@ -124,12 +139,32 @@ print(hat)
 
   # Discretizating Features: 
      #  Binarizer – 
-        # Means we can binarize the feature according to some threshold. 
+        # First, import this from preprocessing. 
+        # This means we can binarize the feature according to some threshold. 
         # Clearly, we can limit the data up to some level, if in case it may go up beyond our setting limit – it will reflect in output.
 
      # Digitize – 
+        # Numpy has 'digitize' method. 
         # Here we can set multiple thresholds by putting the parameter ‘bins’. 
         # If we add one more parameter ‘right = True’ (note by default the ‘right’ parameter is in ‘False’), it excludes the bin value given and move to the next numerical number after that.
 
      # Note that 'np.digitize', but not 'np.binarize' that only given as 'binarize' without np. 
+  
+   # Deleting observations with missing values: 
+        # We should give missing values as ‘np.nan’ – not ‘nan’ only. 
+        # The tilt symbol ‘~’ provides all the observations expects that ‘nan’ values.
+ 
+        # Alternatively, we can use ‘Pandas’ also to delete missing observations. 
+	     # In Pandas, we use ‘dropna’ method to drop the null values. 
+
+        # It has been said that they may be three reasons that can causes the observations to miss from the data. The following are the three: 
+                   # a)	Missing completely at random (MCAR): -	Without any reason, when the observations missing completely from the data
+
+                   # b)	Missing at Random (MAR):-	May be some reason, information (observations) might be missing in some rows/ columns in the data. Eg: Some men hesitated and denied to provide their salary information. Some women hesitated and denied to provide their age information according to the requirement of the survey. 
+
+                   # c)	Missing not at Random (MNAR): -	Could not able to judge why the observation is missing. May be it’s missing due to some particular reason. 
+
+# NOTE: NOTE THAT THE ABOVE MAY BE THE INTERVIEW QUESTION - IN WHICH CASES WE SHOULD NOT DELETE THE OBSERVATIONS? 
+      # The answer is 'MNAR' - because this would not be usually deleted by random but it will be deleted for some cause. 
+
  
