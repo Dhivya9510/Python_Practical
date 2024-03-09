@@ -57,7 +57,7 @@ print(dataframe)
 
 # Alternatively, once you have created a DataFrame object, we can append new rows to the bottom. 
      # Create row
-new_person = pd.DataFrame(["Paul Welsely", 40, True], index = ["Name", "Age", "Driver"])
+new_person = pd.Series(["Paul Welsely", 40, True], index = ["Name", "Age", "Driver"])
      # Append now
 goat = dataframe.append(new_person, ignore_index = True)  #type: ignore (If you run the dataframe, 'append' will be in color)
 print(goat)

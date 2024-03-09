@@ -167,4 +167,3 @@ print(mymodel(5))
            # When we asked to DRAW A POLYNOMIAL REGRESSION, we need to use MATPLOTLIB.PYPLOT AS PLT and we need to include the line item that has LINSPACE. 
            # When we asked to TEST THE FITTING LEVEL OF TRAINING DATA IN POLYNOMIAL REGRESSION, we need to use SKLEARN.METRICS R2_SCORE to include the line item r2_score.  
            # Note the r2 line item input (line number: 121)
-           
