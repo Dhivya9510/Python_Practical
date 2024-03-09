@@ -22,5 +22,49 @@ trained_model = App.fit(X[:,1:],X[:,0])
 imputed_values = trained_model.predict(X_with_nan[:,1:])
 print(imputed_values)
 
-# So the result would be showing as [0. 1.]  - we need to bring the output in to the matrix -for that we need to write 'reshape' function. 
+# So the result would be showing as [0. 1.]  - we need to bring the output in to a matrix -for that we need to write 'reshape' function. 
+
+ball = imputed_values.reshape(-1,1)
+print(ball)
+
+# Now we need to join this imputed values into our feature matrix. So that we used 'HSTACK' & 'VSTACK'.
+# Before doing that we need to understand what is Hstack and what is Vstack.
+
+# An alternative solution is to fill in missing values with the feature’s most frequent value: 
+
+a = np.ones((3,3))
+print(a)
+Cat = np.vstack((a, np.array((2,2,2))))
+print(Cat)
+
+# Therefore we done with vertical stack.
+# Adding a column requires a bit more work. However, you can't use 'np.hstack' directly.
+
+b = np.ones((3,3))
+c = np.array((2,2,2)).reshape(3,1)
+dog = np.hstack((b,c))
+print(dog)
+
+# Note: For the codes for Hstack & Vstack – note that double brackets are written. (Line 36 & 43)
+    # Here (Line 43) the matrix is in the form 1X3 for the matrix 3X3 (line 42). 
+    # If we write (3,1) when reshaping, it means (3X1) 3 rows and 1 column. 
+    # Now we can get the desired output when run it. 
+
+#Now we are going to join imputed values with the feature. 
+
+X_with_imputedvalues = np.hstack((imputed_values.reshape(-1,1),X_with_nan[:,1:]))
+print(X_with_imputedvalues)
+
+# Join two feature Matrices
+gate = np.vstack((X_with_imputedvalues,X))
+print(gate)
+
+# Alternatively there is an another method to join two feature matrices by using 'SimpleImputer'.
+
+from sklearn.impute import SimpleImputer
+X_complete = np.vstack((X_with_nan,X))
+imputer = SimpleImputer(strategy="most_frequent") # There are many stratergies such as mean, median , mode so on.. 
+imputer.fit_transform(X_complete)
+
+
 
