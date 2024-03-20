@@ -74,7 +74,47 @@ print(variable)
 class_variable= one_hot_multiBin.classes_
 print(class_variable)
 
+# Now we are going to create our own tagger. 
+     # This is for what? The answer is we may go through complicate English words sometimes (example: In medical terminologies). 
+     # POS is a pre-trained and for a simple solution only. We couldn’t say it is not that much account. 
+     # For the sake - We can train our own tagger (unlike the pre-trained pos tag package). 
+     # But for this we need large corpus of texts. Here we going to download ‘brown’ package from corpus. 
+     # Brown package is nothing but it already defined the large amount of pre-loaded texts with tags. 
+     # So that we can use ‘back of taggers’ to train to create our own tagger to find out the accuracy of the same. 
+     # Under the ‘back of taggers’ (back of n_grams) – we use three types of taggers. That are Unigram, Bigram & Trigram. 
+         # Trigram checks that whether it can provide the tags for the given two words. If this condition fails to provide the expected – next it will go to Bigram. 
+         # Bigram checks that whether it can provide the tags for the previous words. If this condition even fails to provides the expected – next it will go to Unigram. 
+         # Unigram will finally check it to provide the tagger. 
+
+# Import Library and download data. 
+ 
+Brownie = nltk.download('brown')
+print(Brownie)    # Verified that it's up-to-date. 
+
+# Load Library. 
+
+from nltk.corpus import brown
+from nltk.tag import TrigramTagger
+from nltk.tag import BigramTagger
+from nltk.tag import UnigramTagger
+
+# Get some text from the Brown Corpus, broken into sentences. 
+sentences = brown.tagged_sents(categories='news')
+print(sentences)  # Just for our references to see. 
+
+# Split into 4000 sentences for traning and 623 for testing. 
+train = sentences[:4000]
+test = sentences[4000:]
+# Create Backoff tagger
+Unigram = UnigramTagger(train)
+Bigram = BigramTagger(train, backoff=Unigram)
+Trigram =TrigramTagger(train, backoff= Bigram)
+
+# Show accuracy: 
+Accuracy = Trigram.evaluate(test)
+print(Accuracy)
+
 
 # Notes:
     #  There in the line 19, you can see that 'pos_tag' is always alonged with 'word_tokenize'. 
-    # Understand the code concept in the line 36. 
+    # Understand the code concept in the line 36, most importantly line 55 to 57. 
