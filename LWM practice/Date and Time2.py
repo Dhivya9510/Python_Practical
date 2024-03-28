@@ -12,9 +12,9 @@ import pandas as pd
 df = pd.DataFrame()
 
   # Create datetimes
-df['Date'] = pd.date_range('1/1/2001', periods= 100000, freq='H')
-
-  # Select observations between two datetimes: 
+df['Date'] = pd.date_range('1/1/2001', periods= 100000, freq='H') 
+  
+  # Due to the above code give so many outputs - we will go ahead selecting only observations between two datetimes: 
 
 selected_dates1 = df[(df["Date"] > '2002-1-1 01:00:00') & (df["Date"] <= '2002-1-1 04:00:00')]
 print(selected_dates1)
@@ -64,4 +64,5 @@ dataframe.head(3)  # Output not showing due to the variable input when compare t
     # And the another method is using 'slicer' by inputing 'loc' function. (suitable for large amount of column data)
            # In the slicing method - we need to set the index to locate. 
     # Note that we always use ‘dt’ when we use ‘series’. 
+    # Remember that We need to use 'dt' in order to seperate the features year, month, date, hours & minutes separately. Line 50 to 54. 
 
