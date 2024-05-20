@@ -14,11 +14,11 @@ import numpy as np
 import pandas as pd
 
 # Create Strings: 
-date_strings = np.array(['03-04-2005 11:35 PM', '23-05-2010 12:01 AM', '04-09-2009  09:09 PM'])
+date_strings = np.array(['03-04-2005 11:35 PM', '23-05-2010 12:01 AM', '04-09-2009  09:09 PM']) # Date & time represented as strings. 
 
 # Convert to datetimes: 
 
-datetimes = [pd.to_datetime(date, format= '%d-%m-%Y %I:%M %p') for date in date_strings]
+datetimes = [pd.to_datetime(date, format= '%d-%m-%Y %I:%M %p') for date in date_strings] 
 print(datetimes)
 
 # We might also want to add an argument to the ERRORS parameters to handle problems. 
